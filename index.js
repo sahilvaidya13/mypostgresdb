@@ -1,19 +1,19 @@
 const express = require("express");
 
 const app = express();
+require("dotenv").config();
 const { Sequelize } = require("sequelize");
+const dbname = process.env.DB_NAME;
+const dbuser = process.env.DB_USER;
+const pass = process.env.PASS;
+const URL = process.env.HOST_URL;
 
 // Connect to the PostgreSQL database (replace with your actual credentials)
-const sequelize = new Sequelize(
-  "db_sahil",
-  "db_sahil_user",
-  "TOIbVMKtkNiiG2lA2GieuLD9MxFHf2Dz",
-  {
-    host: "postgres://db_sahil_user:TOIbVMKtkNiiG2lA2GieuLD9MxFHf2Dz@dpg-cl2be8il7jac73fcmjo0-a.oregon-postgres.render.com/db_sahil",
-    dialect: "postgres",
-    // Other configurations if needed
-  }
-);
+const sequelize = new Sequelize(dbname, dbuser, pass, {
+  host: URL,
+  dialect: "postgres",
+  // Other configurations if needed
+});
 
 // Test the connection
 sequelize
